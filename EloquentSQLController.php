@@ -142,6 +142,12 @@ class HomeController extends Controller
            echo $e->getCode().', '.$e->getLine();
         }
     }
+    
+    //获取单个值 或 列
+    pulic function singleValue(){
+        $emailValue = DB::table('users')->where(['id'=>1])->value('email');//获取email值
+        $emailColumnValue = DB::table('users')->pluck('email');//获取email列值
+    }
 
 
 }
