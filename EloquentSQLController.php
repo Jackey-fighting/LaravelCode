@@ -148,6 +148,10 @@ class HomeController extends Controller
         $emailValue = DB::table('users')->where(['id'=>1])->value('email');//获取email值
         $emailColumnValue = DB::table('users')->pluck('email');//获取email列值
     }
-
+   
+    //获取所有的model数据，并存到缓存10分钟
+    public function userRemember(){
+        User::remember(10, 'users.all')->get();
+    }
 
 }
