@@ -154,4 +154,11 @@ class HomeController extends Controller
         User::remember(10, 'users.all')->get();
     }
 
+    //with预加载关联模型
+    public function doWith(){
+        $roles = App\Role::with('user')->get();//这里的with 参数一定是users表的单数形式
+        foreach($roles as $role){
+            echo $role->user->name;//这里是使用了动态属性，不过Role模型下一定要使用 public function user(){ return $this->belongsTo('App\User')}
+        }
+    }
 }
